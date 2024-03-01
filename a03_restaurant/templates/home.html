@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% comment %} put my style here {% endcomment %}
+
+{% comment %} <h1> welcome to my HOME Café sir </h1> {% endcomment %}
+
+
+<div class="container">
+{{block.super}}
+<div class="row">
+   
+<div class="col-sm-6 mt-3 banner-info">
+    {% comment %} <h1>HOW FOOD MAKE YOU HAPPY !</h1> {% endcomment %}
+    <p class="big-text"> Just tryout our foods </p>
+    <p> You'd never regret for taste this crunchy and delicious over tasty food with a lot of unique variant taste.
+        This literally make your brain with merinate meyonise with hot sweet watery honey. Savor the indulgent delight of Truffle Infused Risotto—a symphony of creamy Arborio rice cooked to perfection, enriched with earthy truffle essence and crowned with Parmesan shavings. Each decadent spoonful unveils a harmonious dance of flavors, a culinary ode to refined palates. Succulent Lobster Bisque, a masterpiece of the sea, marries the sweetness of tender lobster with a velvety bisque, delivering a symphony of oceanic notes. Accompanied by artisanal crusty bread, it promises a journey of sensory bliss. Elevate your dining experience with this gastronomic duet, a testament to the artistry of culinary craftsmanship and a celebration of unparalleled taste.
+    </p>
+</div>
+
+<div class="col-sm-6 banner-image">
+
+    <img src="{% static 'foodie.jpg' %}" alt="foodie" class="img-responsive" height="500px" width="500px">
+    
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

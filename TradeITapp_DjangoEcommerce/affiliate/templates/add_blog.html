@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{%block title %}add_blog{% endblock title %}
+{% block body %}
+{% if user.is_authenticated  %}
+<body style = "background-color:#7abecc">
+<div class='container'>
+<h1 style = "text-align: center"> Add Post </h1>
+<hr> 
+<br/>
+<div class="mb-3">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-secondary">Post</button> 
+</form>
+</div>
+</div>
+{% endif %}
+</body>
+{% endblock body %}
+

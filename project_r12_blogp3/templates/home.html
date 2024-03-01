@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="d-flex flex-wrap p-4">
+  <div class="col-2">
+    {% for cat in category %}
+
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="category"
+        id="{{cat.id}}"
+      />
+      <label class="form-check-label" for="{{cat.id}}">
+        
+        <a href="{% url 'category_wise_post' cat.slug %}">{{cat.name}}</a>
+      </label>
+    </div>
+
+    {% endfor %}
+  </div>
+
+  <div class="col-10">
+    <h3>{{data | length}} results found!</h3>
+    <div class="d-flex flex-wrap justify-content-center px-5 pt-5">
+      {% for post in data %}
+      <div class="col-sm-3">
+        <div class="card m-2">
+          <div class="card-body">
+            <img src="{{post.image.url}}" class="card-img-top" alt="">
+            <h5 class="card-title"><a href="{% url 'detail_post' post.id %}" class="text-decoration-none text-dark">{{post.title}}</a></h5>
+            <p class="card-text">{{post.content |truncatewords:10}}</p>
+            <p>Author : {{post.author.first_name}} {{post.author.last_name}}</p>
+            <p>
+              Category : {% for cat in post.category.all %}
+              <button class="btn btn-primary btn-sm m-2" disabled>
+                {{cat.name}}
+              </button>
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

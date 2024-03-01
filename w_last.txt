@@ -1,0 +1,15 @@
+Practice 22.5 : 
+https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/project_r13_bank_p2
+
+Practice 23.5 :
+https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/project_r13_bank_p3_pc
+
+Doc File:
+https://docs.google.com/document/d/1esPv3IAuHyTDibylNd05EXCN6NIHx3N4zvnT7FSFAqE/edit?usp=sharing
+
+Assignment 5 Github link:
+https://github.com/roman1117459II/assignment_5_mdrakib
+
+Assignment 5 live link:
+
+https://library-management-ewod.onrender.com/

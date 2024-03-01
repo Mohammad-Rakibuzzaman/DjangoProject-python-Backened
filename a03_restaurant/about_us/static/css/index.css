@@ -1,0 +1,18 @@
+body{
+    background-color: bisque;
+}
+
+.big-text{
+    font-size: 52px;
+    margin: 20px 0;
+    color: darkorange;
+}
+
+img {
+    border-radius: 50%;
+  }
+
+
+.banner-info, .banner-image {
+    margin: 13px 0;
+}

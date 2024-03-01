@@ -1,0 +1,185 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>TradeIT</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'affiliate/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900' %}%" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i' %}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'affiliate/css/one-page-wonder.min.css' %}" rel="stylesheet">
+  
+  {% if user.is_authenticated  %}
+  <link href="{%static 'affiliate/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" >
+
+  <!-- Custom styles for this template -->
+  <link href="{%static 'affiliate/css/modern-business.css' %}" rel="stylesheet">
+  
+  {% endif %}
+
+</head>
+ 
+<body>
+
+  <!-- Navigation --><!--
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">TradeIT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
+    <div class="container">
+      <a class="navbar-brand" href="/">TradeIT</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    
+    {% if user.is_authenticated  %}
+    <li class="nav-item">
+            <a class="nav-link" href="/document">Documentation</a>
+          </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'add_post' %}">Add Post <span class="sr-only">(current)</span></a>
+      </li>
+          
+         <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/laptop">Top 10 Laptop</a>
+        </div>
+      </li>
+      <li class="nav-item">
+            <a class="nav-link" href="/privacy">Privacy Policy</a>
+          </li>
+      
+     <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">LOG OUT <span class="sr-only">(current)</span></a>
+      </li> 
+       
+
+        
+      </div>
+     
+    
+    {% else %}
+     
+    
+    
+       <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
+    <div class="container">
+      <a class="navbar-brand" href="/"><h2>TradeIT</h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+        <!--
+       <ul class="navbar-nav ml-auto">
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}">SIGN UP <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">LOG IN <span class="sr-only">(current)</span></a>
+      </li>
+      </ul>  
+  -->
+      <!--
+     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand"  href="/"><img src="../static/affiliate/images/lastlogo.png"  alt="" width="150px" ></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    -->
+     {% endif %}
+      
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% if user.is_authenticated  %}
+
+{% else %}
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0">Welcome To TradeIT</h1>
+        <h2 class="masthead-subheading mb-0">Start Your Business</h2>
+        <a href="/document" class="btn btn-primary btn-xl rounded-pill mt-5">Documentation</a>
+      </div>
+    </div>
+  </header>
+     
+{% endif %}
+
+ 
+
+  {% block body %}
+
+{% endblock body%}
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'affiliate/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'affiliate/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

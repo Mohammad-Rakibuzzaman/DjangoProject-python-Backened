@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block body %}
+<div class="container">
+
+
+{% for post in object_list %}
+   <a href="{% url 'article-detail' post.pk %}"><h2 class="post-title">{{ post.title }}</h2></a>  - {{ post.author.first_name }} {{ post.author.last_name }} {{post.post_date}}- <small>
+     {% if user.is_authenticated  %}
+    <a href="{% url 'update_post' post.pk %}">(Edit)</a>
+    {% endif %}
+    </small> <br/>
+    
+    <h3 class="post-subtitle">{{ post.body|slice:":200" }}</h3>
+     <hr>
+{% endfor %}
+
+</div>
+
+{% endblock body %}

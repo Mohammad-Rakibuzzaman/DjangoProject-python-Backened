@@ -1,0 +1,114 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block content %}
+
+<style>
+  /* Custom styles for the navigation bar */
+  .navbar {
+    margin-bottom: 0; /* Remove margin below navbar */
+    height: 80px; /* Adjust the height of the navbar */
+  }
+
+  /* Custom styles for the carousel */
+  #homeCarousel {
+    max-height: 330px; /* Adjust the height of the carousel */
+    overflow: hidden;
+    margin-top: -16px; /* Adjust the margin to reduce space above carousel */
+  }
+</style>
+
+<!-- Image and Content Section -->
+<div class="container-fluid bg-light p-5">
+  <div class="row">
+    <div class="col-md-6">
+      
+      <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWR1Y2F0aW9ufHx8fHx8MTcwNjA1NTM0NQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600" class="img-fluid rounded" alt="Welcome Image">
+          </div>
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8b25saW5lLWVkdWNhdGlvbnx8fHx8fDE3MDYyODg3OTg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" class="d-block w-100" alt="Welcome Image 2">
+          </div>
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8b25saW5lLWxlYXJuaW5nfHx8fHx8MTcwNjI4ODk1Mg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" class="d-block w-100" alt="Welcome Image 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+
+
+
+
+
+    </div>
+    <div class="col-md-6">
+      <h1 class="display-4">Welcome to Andragogy</h1>
+      <p class="lead">Empowering education through personalized tutoring experiences. Explore a world of knowledge with our diverse range of tuition offerings.</p>
+      
+      {% if request.user.is_authenticated %}
+      {% else %}
+        <div class="container text-center mt-4">
+          <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Learn More</a>
+        </div>
+      {% endif %}
+    
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Classes Section -->
+  <div class="container mt-5">
+    <div class="d-grid gap-2 d-md-block col-md-12 text-center">
+      <hr>
+      <h3>Classes</h3>
+      {% for cls in classes %}
+        <a href="{% url 'classes_wise_post' cls.slug %}" class="btn btn-secondary" type="button">{{ cls.name }} </a>
+      {% endfor %}
+      <hr>
+      <h3 style="color: #FF6868;">{{ data | length }} results found!</h3>
+      <hr>
+    </div>
+
+    <!-- Tuition Cards Section -->
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+      {% for post in data %}
+        <div class="col">
+          <div class="card h-100 border border-primary rounded">
+            <img src="{{ post.image.url }}" class="card-img-top rounded-top" alt="{{ post.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.content | truncatewords:15 }}</p>
+              <p>
+                {% for cat in post.classes.all %}
+                  <button class="btn btn-success btn-sm m-1" disabled>{{ cat.name }}</button>
+                {% endfor %}
+              </p>
+              <h6 class="card-subtitle mb-2 text-muted">Total Reviews: {{ post.comments.count }}</h6>
+              {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'apply_for_tution' post.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-dark">Apply for Tuition</button>
+                </form>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

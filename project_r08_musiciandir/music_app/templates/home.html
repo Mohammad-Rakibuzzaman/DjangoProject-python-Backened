@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+
+
+{% if data %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">IDs</th>
+          <th scope="col">Musician Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Album Rating</th>
+          <th scope="col">Instrument Type</th>
+          <th scope="col">Album Name</th>
+          <th scope="col">Release Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% comment %} {% for ms in data %} {% endcomment %}
+        {% for ms in data %}
+    
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td><a class="btn btn-default" href="{% url 'edit_musician' ms.album.id %}">{{ ms.album.name }} {{ ms.album.lastname }}</a></td>
+          <td>{{ms.album.email_field}}</td>
+          <td>{{ms.rating}}</td>
+          <td>{{ms.album.instrument_type}}</td>
+          <td>{{ms.album_name}}</td>
+          <td>{{ms.release_date}}</td>
+    
+  
+          <td><a class="btn btn-danger text-white" href="{% url 'delete_music' ms.id %}">Delete</a> <a class="btn btn-warning text-white" href="{% url 'edit_post' ms.id %}" class="btn btn-warning">Edit</a></td>
+        
+        
+        </tr>
+        {%endfor%}
+        {% comment %} {%endfor%} {% endcomment %}
+  
+      </tbody>
+    </table>
+
+    {% else %}
+    <h3>No data available to show</h3>
+
+  {% endif%}
+
+
+
+
+{% endblock %}

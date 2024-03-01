@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+              alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{ request.user.username }}</h5>
+            <div class="d-flex justify-content-center mb-2">
+              <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit your profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">User Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ request.user.get_full_name }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ request.user.email }}</p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+    <h3 class="d-flex justify-content-between align-items-center">
+      Educational Background
+      {% if request.user.is_authenticated %}
+        <a type="button" href="{% url 'add_userdetails' %}" class="btn btn-dark">Add Details</a>
+      {% endif %}
+    </h3>
+
+    {% if data %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Serial No.</th>
+            <th scope="col">Institution Name</th>
+            <th scope="col">Qualifications</th>
+            <th scope="col">Passing Year</th>
+            <th scope="col">GPA/CGPA</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ms in data %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ ms.institution_name }}</td>
+              <td>{{ ms.qualifications }}</td>
+              <td>{{ ms.passing_year }}</td>
+              <td>{{ ms.gpa }}</td>
+              <td>
+                <a class="btn btn-danger text-white" href="{% url 'delete_userdetails' ms.id %}">Delete</a>
+                <a class="btn btn-warning text-white" href="{% url 'edit_userdetails' ms.id %}">Edit</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <h3>No educational background data available to show</h3>
+    {% endif %}
+
+    <hr>
+
+    <h3 class="text-center mb-4">Selected Tutions</h3>
+    <hr>
+    {% if selected_tutions %}
+      <div class="col-10">
+        <div class="d-flex flex-wrap justify-content-around px-5">
+          {% for tution in selected_tutions %}
+            <!-- Tution Card with reduced margin -->
+            <div class="col-sm-3 mb-3">
+              <div class="card">
+                <img src="{{ tution.image.url }}" class="card-img-top" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">{{ tution.title }}</h5>
+                  <p class="card-text">{{ tution.content | truncatewords:10 }}</p>
+                  <p>
+                    {% for cat in tution.classes.all %}
+                      <button class="btn btn-success btn-sm m-2" disabled>{{ cat.name }}</button>
+                    {% endfor %}
+                  </p>
+                  <h5 class="p-3">Total Reviews: {{ tution.comments.count }}</h5>
+                  
+                  {% if request.user.is_authenticated %}
+              <button class="btn btn-dark"><a href="{% url 'tution_details' tution.id %}"  class="text-decoration-none text-white">View Details</a></button>
+              {% endif %}
+  
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <p>No selected tutions available.</p>
+    {% endif %}
+  </div>
+
+  </section>
+
+  {% endblock %}

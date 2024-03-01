@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>This is home page</h1>
+
+    <h2>Author: {{author}}</h2>
+    <h2>Age: {{age}}</h2>
+    <h2>List: {{lst}} </h2>
+
+{% comment %} conditional statement {% endcomment %}
+
+    {% if age >= 20 %}
+    <h3>You will get driving license! </h3>
+    {% elif age >= 10 and age <= 19 %}
+    <h3>You will not get driving license! </h3>
+    {% else %}
+    <h3>You Kid! </h3>
+    {% endif %}
+
+    {{lst}}
+    <h1> {{ lst | join:" // " }} </h1>
+    <h1>{{ birthday | date:"D d M Y" }}</h1>
+
+    {% comment %} <h1>{{ val | default: "nothing here" }}</h1> {% endcomment %}
+    <h1>{{ val | length }}</h1>
+
+    <h1>{{'happy coding ratul. I love u to see doing code with me and cook delicious food for me.' | truncatewords:8}}</h1>
+
+    <h1>{{ "I love you ratul" | cut:" " }}</h1>
+
+{% comment %} More practice home again {% endcomment %}
+
+    <h3 style='color:pink;'> Birthdate: <i>{{ birthday|date:"SHORT_DATE_FORMAT" }}</i></h3>
+
+    <h3> {{ 20 | add:"5" }} </h3>
+    {% comment %} This works on through loop <h3> {{ [1, 2, 3] | add:"[4, 5, 6]" }} </h3> {% endcomment %}
+    
+    <h3>{{ author | capfirst }} </h3>
+    <h3>{{ 'cMhristmas' | capfirst }} </h3><br>
+    <h3> {{ sentence | cut:"hate" }} </h3><br>
+    
+    <h3>dict sorted by its name order:  {{ courses | dictsort:"name" }} </h3><br>
+    
+
+    {% autoescape off %}
+        <h1>{{ heading|escape }}</h1>
+        <h1>{{ heading }}</h1>
+    {% endautoescape %}
+
+    
+
+    <h3>first filter to get the first item from the list:  {{ lst | first }} </h3><br>
+
+    <h3>length filter to get the length from the list:  {{ lst | length }} </h3><br>
+
+    <h3>line numbers filter to get the list value with line numbers from the list:  {{ sentence | linenumbers }} </h3><br>
+
+    <h3> lower filter: {{ author | lower }} </h3><br>
+
+    <h3> random filter: {{ lst | random }} </h3><br>
+
+    <h3> word count filter: {{ author | wordcount }} </h3><br>
+
+    <h3> striptags filter: {{ stripexm | striptags }} </h3><br>
+
+    <h3> pluralize filter: 
+    {% for x in lst2 %}
+        <h1>You have {{ x }} kiss{{ x|pluralize:'esss' }} left.</h1>
+    {% endfor %}
+    </h3><br>
+
+    <h3> make list filter: {{ 'Allover' | make_list }} </h3><br>
+
+
+
+
+
+
+
+    
+
+{% comment %} forloop {% endcomment %}
+
+    {% for i in courses %}
+    <h3>{{i.id}} {{i.name}} {{i.fee}}</h3>
+    {% endfor %}
+
+
+</body>
+</html>

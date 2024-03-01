@@ -1,0 +1,12 @@
+Practice 14.5 github link : 
+https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/project_r05 
+https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/project_r06rept
+
+Practice 15.5 github link :
+https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/project_r08_musiciandir
+
+Doc File link:
+https://docs.google.com/document/d/1BF7wvQLOADkNbKr4qQh-u7PZwLTIohY8oDJ8Bqzg_wk/edit?usp=sharing
+
+Assignment 4 : 
+https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/project_r09_tm

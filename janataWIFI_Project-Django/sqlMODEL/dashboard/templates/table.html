@@ -1,0 +1,122 @@
+<!-- Write HTML code here -->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<title>JanataWIFI</title>-->
+<!--<meta charset="utf-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--<h2 class="text-center"><u>JanataWIFI -Dataset</u></h2><br>-->
+<!--<table class="table table-dark table-striped">-->
+<!--	<thead>-->
+<!--	<tr>-->
+<!--		<th>date</th>-->
+<!--		<th>trade_code</th>-->
+<!--		<th>high</th>-->
+<!--		<th>low</th>-->
+<!--		<th>open</th>-->
+<!--        <th>close</th>-->
+<!--        <th>volume</th>-->
+<!--	</tr>-->
+<!--	</thead>-->
+<!--	<tbody>-->
+<!--	&lt;!&ndash; jinja2 Technique &ndash;&gt;-->
+<!--	{% if d %}-->
+<!--	{% for i in d %}-->
+<!--	<tr>-->
+<!--		<td>{{i.date}}</td>-->
+<!--		<td>{{i.trade_code}}</td>-->
+<!--		<td>{{i.high}}</td>-->
+<!--		<td>{{i.low}}</td>-->
+<!--		<td>{{i.open}}</td>-->
+<!--        <td>{{i.close}}</td>-->
+<!--        <td>{{i.volume}}</td>-->
+<!--	</tr>-->
+<!--	{% endfor %}-->
+<!--	{% endif %}-->
+<!--	</tbody>-->
+<!--</table>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JanataWIFI</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<body>
+
+<canvas id="myChart"></canvas>
+
+<a href="/create">Add</a>
+<table border='1'>
+    <thead class="thead">
+        <tr>
+            <th>date</th>
+			<th>trade_code</th>
+			<th>high</th>
+			<th>low</th>
+			<th>open</th>
+        	<th>close</th>
+        	<th>volume</th>
+			<th>Action</th>
+		</tr>
+    </thead>
+    {% for i in categories %}
+    <tr>
+        <td>{{i.0}}</td>
+        <td>{{i.1}}</td>
+		<td>{{i.2}}</td>
+		<td>{{i.3}}</td>
+		<td>{{i.4}}</td>
+		<td>{{i.5}}</td>
+		<td>{{i.6}}</td>
+        <td><a href='edit/{{i.0}}'>Edit</a> | <a href='delete/{{i.0}}'>Delete</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+<script>
+
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'JanataWIFI dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+const config = {
+  type: 'line',
+  data: data,
+  options: {}
+};
+  // === include 'setup' then 'config' above ===
+
+  var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+
+</html>

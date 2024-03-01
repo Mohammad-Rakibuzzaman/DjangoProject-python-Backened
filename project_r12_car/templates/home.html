@@ -1,0 +1,59 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+
+<div class="d-flex flex-wrap px-5 pt-3 align-items-center">
+
+  <div class="col-6">
+    <h1>Welcome to our Car Shop </h1>
+    <p>Welcome to Car Shop, where automotive dreams come to life! At our premier car dealership, we take pride in offering a curated selection of the finest vehicles, catering to every style and preference. Step into our showroom and discover an impressive range of new and pre-owned vehicles. From sleek sedans to powerful SUVs and elite luxury cars, we've handpicked each model to ensure the highest standards of quality and performance. Our inventory features the latest releases from renowned manufacturers, showcasing cutting-edge technology and stylish design.</p>
+  </div>
+  <div class="col-6">
+<img src="{% static 'header.jpg' %}" style="width: 90%;" />
+  </div>
+</div>
+
+<hr>
+
+<div class="d-flex flex-wrap p-4">
+
+    
+
+    <div class="d-grid gap-2 d-md-block col-md-12 text-center">
+      {% for cat in category %}
+      <a href="{% url 'category_wise_post' cat.slug %}" class="btn btn-dark" type="button">{{cat.name}}</a>
+      {% endfor %}
+    </div>
+  
+    <hr>
+
+  <div class="col-10 p-3">
+    <h4>{{data | length}} results found</h4>
+    <div class="d-flex flex-wrap pt-5">
+      {% for post in data %}
+      <div class="col-sm-3">
+        <div class="card m-2">
+          <div class="card-body">
+            <img src="{{post.image.url}}" class="card-img-top" alt="">
+            
+            {% comment %} <p class="card-text">{{post.content |truncatewords:10}}</p> {% endcomment %}
+            <p>Car Name: {{post.author.first_name}}<p>
+            <p>Car Price: {{post.price}}<p>
+              
+            <p>
+              Car Brand Name: {% for cat in post.category.all %}
+              <button class="btn btn-primary btn-sm m-2" >
+                {{cat.name}}
+              </button>
+              {% endfor %}
+            </p>
+            <h5 class="card-title"><a href="{% url 'detail_post' post.id %}" class="text-decoration-none text-dark">View Details</a></h5>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

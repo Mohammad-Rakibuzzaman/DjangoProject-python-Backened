@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{{block.super}}
+
+{% comment %} <div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for i in meals %}
+  {% for cat in i.categories %}
+  <div class="col">
+    
+    <div class="card h-100">
+      <img src="{{cat.strCategoryThumb}}" class="card-img-top" alt="foodie">
+      <div class="card-body">
+        <h5 class="id">{{cat.idCategory}}</h5>
+        <h5 class="card-title">{{cat.strCategory}}</h5>
+        <p class="card-text">{{cat.strCategoryDescription}}</p>
+        
+    </div>    
+  </div>
+  {% endfor %}
+  {% endfor %}
+</div> {% endcomment %}
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for i in meals %}
+  {% for cat in i.categories %}
+  <div class="col">
+    
+    <div class="card h-100">
+      <img src="{{cat.strCategoryThumb}}" class="card-img-top" alt="foodie">
+      <div class="card-body">
+        <h5 class="id">{{cat.idCategory}}</h5>
+        <h5 class="card-title">{{cat.strCategory}}</h5>
+        <p class="card-text">{{cat.strCategoryDescription | truncatewords:10}}</p>
+      </div>
+    </div>    
+  </div>
+  {% endfor %}
+  {% endfor %}
+</div>
+
+   
+
+  
+</body>
+</html>
+
+{% endblock %}

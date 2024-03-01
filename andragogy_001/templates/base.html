@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <title>Andragogy</title>
+
+    <style>
+
+      body {
+        background-color: #f0f0f0; /* Light gray background color */
+      }
+
+
+      /* Custom styles for the navigation bar */
+      .navbar {
+        background-color: #4caf50; /* Green background */
+        padding: 15px 0; /* Increased padding for better visibility */
+      }
+    
+      .navbar-brand {
+        color: #184D47 !important; /* Yellow text color for brand */
+        font-weight: bold;
+        font-size: 25px;
+      }
+    
+      .navbar-toggler-icon {
+        background-color: #ffc107; /* Yellow color for toggler icon */
+      }
+    
+      .navbar-nav .nav-link {
+        color: #ffffff !important; /* White text color for links */
+        margin: 0 15px; /* Increased margin for better spacing */
+        font-weight: bold;
+      }
+    
+      .navbar-nav .nav-link:hover {
+        color: #ffc107 !important; /* Yellow text color on hover */
+      }
+    
+      .navbar-btn {
+        margin-right: 15px; /* Adjust margin for the button */
+      }
+    
+      /* Custom styles for the cards */
+      .card {
+        background-color: #f8f9fa; /* Light gray background for cards */
+        border: 1px solid #dee2e6; /* Light border color */
+        border-radius: 8px; /* Rounded corners */
+        margin-bottom: 20px; /* Increased margin between cards */
+      }
+    
+      .card-title {
+        color: #007bff; /* Blue text color for card titles */
+      }
+    
+      .card-text {
+        color: #495057; /* Dark text color for card content */
+      }
+
+      /* for messages */
+      {% comment %} .custom-alert-info {
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+        color: #0c5460;
+      }
+
+      .custom-alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+      }
+
+      .custom-alert-warning {
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+        color: #856404;
+      }
+
+      .custom-alert-danger {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+      } {% endcomment %}
+      .custom-alert-info {
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+        color: #0c5460;
+      }
+
+      .custom-alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+      }
+
+      .custom-alert-warning {
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+        color: #856404;
+      }
+
+      /* added for right side close button */
+
+      .custom-alert-danger {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+      }
+
+      .custom-alert {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    
+      .custom-alert .btn-close {
+        align-self: start; /* Adjust the vertical alignment if needed */
+      }
+
+
+
+    </style>
+    
+    
+    
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #EAECCC;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'homepage' %}">Andragogy()</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+             
+              <a type="button" href="{% url 'homepage' %}" class="btn btn-info">Home</a>
+
+            </li>
+
+            
+          </ul>
+          <div class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
+
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-warning text-dark mx-3"
+                  href="{% url 'profile' %}"
+                  >Profile</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-danger text-dark mx-3"
+                  href="{% url 'user_logout' %}"
+                  >Logout</a
+                >
+              </li>
+          
+
+              {% else %}
+
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-warning text-dark mx-3"
+                  href="{% url 'register' %}"
+                  >Register</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-primary text-dark"
+                  href="{% url 'user_login' %}"
+                  >Login</a
+                >
+              </li>
+
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% comment %} {% for i in messages %}
+
+    <div class="">
+      <h3 class="text-{{i.tags}}">{{i}}</h3>
+    </div>
+
+    {% endfor %}  {% endcomment %}
+    
+    <!-- Your main template or base.html -->
+
+<!-- Your main template or base.html -->
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-12">
+      {% for message in messages %}
+        <div class="alert alert-dismissible fade show {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %} custom-alert-{{ message.tags }}">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong>{{ message.tags|title }}!</strong> {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% comment %}     
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-12">
+      {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %} custom-alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong>{{ message.tags|title }}!</strong> {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div> {% endcomment %}
+
+    {% block content %} {% endblock %}
+
+      
+  <!-- Footer Section -->
+  <footer class="footer mt-5 bg-dark text-white text-center" style="padding: 30px 0; margin-top: 50px;">
+    <div class="container">
+      <h4 style="color: #EAECCC;">Andragogy Hub</h4>
+      <p style="margin-bottom: 10px; color: #EAECCC;">Empowering Education Through Personalized Tutoring Experiences</p>
+      <p>
+        &copy; 2024 Andragogy. All rights reserved. |
+        <a href="#" style="color: #EAECCC;">Privacy Policy</a> |
+        <a href="#" style="color: #EAECCC;">Terms of Service</a> |
+        <a href="#" style="color: #EAECCC;">Contact Us</a>
+      </p>
+    </div>
+  </footer>
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

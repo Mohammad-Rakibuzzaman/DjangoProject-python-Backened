@@ -1,0 +1,22 @@
+<!-- templates/apply_for_tuition.html -->
+{% extends "base.html" %}
+{% block content %}
+  <div class="col-sm-12">
+    <div class="card m-2">
+      <div class="card-body">
+        <h1 class="card-title">{{ tution.title }}</h1>
+        <p class="card-text">{{ tution.content }}</p>
+        <p>
+          Category: {% for cat in tution.classes.all %}
+          <button class="btn btn-warning btn-sm m-2" disabled>{{ cat.name }}</button>
+          {% endfor %}
+        </p>
+        <form method="post" action="{% url 'apply_for_tuition' tution.id %}">
+          {% csrf_token %}
+          {{ applicant_form | crispy }}
+          <button type="submit" class="btn btn-info">Apply for Tuition</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

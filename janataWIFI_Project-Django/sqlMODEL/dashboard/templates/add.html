@@ -1,0 +1,18 @@
+{% load static %}
+
+    <a href="http://127.0.0.1:8000/">Display</a>
+
+	<form method="POST" action="/inserted"  id="myform" enctype="multipart/form-data">
+		{% csrf_token %}
+
+        date  <input type="text" name="txt1" ><br>
+        trade_code  <input type="text" name="txt2" ><br>
+        high  <input type="text" name="txt3" ><br>
+        low <input type="text" name="txt4" ><br>
+        open  <input type="text" name="txt5" ><br>
+        close  <input type="text" name="txt6" ><br>
+        volume  <input type="text" name="txt7" >
+       <br/>
+        <button type="submit" >Insert Data</button>
+	</form>
+</div>

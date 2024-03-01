@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+   
+
+    {% comment %} <h1> welcome to my About Us section Café sir </h1> {% endcomment %}
+    {{block.super}}
+    <div class="container">
+        
+        <div class="row">
+           
+        <div class="col-sm-6 mt-3 banner-info">
+            {% comment %} <h1>HOW FOOD MAKE YOU HAPPY !</h1> {% endcomment %}
+            <p class="big-text"> Want to know Further About Us? </p>
+            <p> In the heart of culinary innovation and gastronomic delight, the fictional restaurant "Epicurean Haven" emerged as a beacon of exquisite dining, crafting a rich history woven with passion, creativity, and a commitment to unparalleled culinary experiences. Established in the quaint town of Ambrosia Springs in the early 20th century, Epicurean Haven was the brainchild of visionary restaurateur Marcel Leclair, whose dream was to create a haven for food enthusiasts seeking an extraordinary culinary journey.
+
+                The tale of Epicurean Haven begins with Marcel's fascination with the diverse flavors and aromas that permeated the town's bustling marketplace. Inspired by the abundance of fresh, local ingredients, Marcel envisioned a restaurant that would not only elevate the palate but also celebrate the essence of community and culture through its culinary creations.
+            </p>
+        </div>
+        
+        <div class="col-sm-6 banner-image">
+        
+            <img src="{% static 'images/musashi.jpg' %}" alt="vgmusashi" class="img-responsive" height="500px" width="500px">
+            
+        </div>
+        
+        
+        </div>
+        
+        </div>
+    
+       
+  
+
+
+    
+</body>
+</html>
+
+
+
+{% endblock %}

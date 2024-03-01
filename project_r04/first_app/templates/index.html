@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  
+{% block content %}
+
+    {% comment %} <h1>{{id}}</h1> {% endcomment %}
+    <h1>{{id.name}}</h1>
+
+    <h1>This is our about page</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Body</th>
+          </tr>
+        </thead>
+        <tbody>
+{% for i in data %}
+          <tr>
+            <th scope="row">{{i.userId}}</th>
+            <td>{{i.id}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.body}}</td>
+          </tr>
+{% endfor %}
+        </tbody>
+      </table>
+
+    <h1>Inside of first app</h1>
+
+    <img src="{% static 'images/BakiHanma11.jpg' %}" alt="ippo" />
+
+    {% comment %} Now if we delete our Dir in setting folder our pic will still
+    load because of set inside of app folder {% endcomment %}
+
+    
+  {% endblock %}

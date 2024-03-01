@@ -1,0 +1,68 @@
+
+{% extends "base.html" %} 
+{%  load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="d-flex flex-wrap px-5 pt-3 pb-5 align-items-center">
+
+  <div class="col-6">
+    <img src="{{post.image.url}}" style="width: 90%;" />
+  </div>
+
+  <div class="col-6">
+    <h2> Title : {{post.title}}</h2>
+    <p class="card-text">{{post.content}}</p>
+    <p>
+      Category Name : {% for cat in post.category.all %}
+      <button class="btn btn-warning btn-sm m-2">
+        {{cat.name}}
+      </button>
+      {% endfor %}
+    </p>
+    <h4 class="card-text">Borrowing Price: {{post.borrowing_price}}$</h4>
+    <br>
+    {% if request.user.is_authenticated %}
+    <button href="#" class="btn btn-danger mb-5">Borrow Books</button>
+
+    <div class="card">
+      <div class= "card-body">
+        <form method="post">
+          <h4>Add a Review</h4>
+          {% csrf_token %}
+          {{comment_form | crispy}}
+      
+          <button class="btn btn-warning mb-5">Submit</button>
+      </div>
+    </div> 
+
+    
+    {% else %}
+
+
+    
+    <div class="card m-2">
+      <h5 class="p-3">Total Reviews: {{comments | length}}</h5>
+      {% for comment in comments  %}
+      <div class="card-body border m-2">
+          <p><b>{{comment.name}}</b> {{comment.created_on}}</p>
+          <p>{{comment.body}}</p>
+      </div>
+      {% endfor %} 
+    </div>
+
+    {% endif %}
+    
+
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
