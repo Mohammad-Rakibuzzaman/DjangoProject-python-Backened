@@ -5,7 +5,7 @@ https://github.com/roman1117459II/backend_django_all_practice_project_module/tre
 practice 11.5 github link:
 https://github.com/roman1117459II/backend_django_all_practice_project_module/tree/master/p02_a01
 
-Doc link:
+Doc link here:
 https://docs.google.com/document/d/10J6u7q7Xl3_e4xP-2AdeJ1DG91S5DWz-ZOBgjXVg-zQ/edit?usp=sharing
 
 Assignment 3 github link:
